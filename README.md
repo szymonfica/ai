@@ -1,3 +1,3 @@
-# Artificial Intelligence - university course
+# Artificial Intelligence university course
 
 Solutions of assignments.
