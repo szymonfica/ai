@@ -11,11 +11,11 @@ def f(line):
     for i in range(len(line)):
         for k in range(0, i+1):
             if dp[k] > -1 and line[k:i+1] in dict:
-                if dp[k] + (i+1-k)*(i+1-k) > dp[i+1]:
+                if dp[k] + (i+1-k)*(i+1-k) >= dp[i+1]:
                     dp[i+1] = dp[k] + (i+1-k)*(i+1-k)
                     prev[i] = k-1
     result, idx = '', len(line)-1
-    while idx > 0:
+    while idx >= 0:
         result = line[prev[idx]+1:idx+1] + ' ' + result
         idx = prev[idx]
     return result
