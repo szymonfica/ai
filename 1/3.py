@@ -5,9 +5,7 @@ faces  = ['J', 'Q', 'K', 'A']
 numbers  = ['2', '3', '4', '5', '6', '7', '8', '9', '10']
 deck_F = [(v, s) for s in suits for v in faces]
 deck_B = [(v, s) for s in suits for v in numbers]
-#deck_B = [(v, 'hearts') for v in numbers]
-#deck_B = [(v, 'hearts') for v in numbers]
-#deck_B.extend([(v, 'diamonds') for v in numbers])
+#deck_B = [(v, s) for v in ['8', '9', '10'] for s in suits]
 
 '''
 0 - high card
@@ -58,15 +56,8 @@ def eval(hand):
 def game():
     random.seed()
     hand_F, hand_B = [], []
-    while len(hand_F) < 5:
-        c = random.choice(deck_F)
-        if c not in hand_F:
-            hand_F.append(c)
-
-    while len(hand_B) < 5:
-        c = random.choice(deck_B)
-        if c not in hand_B:
-            hand_B.append(c)
+    hand_F = random.sample(deck_F, 5)
+    hand_B = random.sample(deck_B, 5)
 
     #print(f"{eval(hand_F)} = {hand_F}")
     #print(f"{eval(hand_B)} = {hand_B}")
@@ -79,3 +70,4 @@ for _ in range(rounds):
         score += 1
 
 print(f"score: {score} : {rounds-score}")
+print(f"win rate: {100*score/rounds}%")

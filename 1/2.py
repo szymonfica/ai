@@ -1,16 +1,16 @@
-dict = dict()
+polish_words = set()
 
 with open('polish_words.txt', 'r') as f:
     lines = f.readlines()
     for line in lines:
-        dict[line.strip()] = True
+        polish_words.add(line.strip())
 
 def f(line):
     dp, prev = [-1]*(len(line)+7), [0]*(len(line)+7)
     dp[0] = 0
     for i in range(len(line)):
         for k in range(0, i+1):
-            if dp[k] > -1 and line[k:i+1] in dict:
+            if dp[k] > -1 and line[k:i+1] in polish_words:
                 if dp[k] + (i+1-k)*(i+1-k) >= dp[i+1]:
                     dp[i+1] = dp[k] + (i+1-k)*(i+1-k)
                     prev[i] = k-1
